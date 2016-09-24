@@ -5,9 +5,9 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 clear
 echo "Welcome back, admin: "
 echo
-PS3='What do you want to do? '
+PS3='What do you want to do? (Enter 6 for menu)  '
 options=("Log Inventory" "Log rate of consumption" "View VATS suggestions" 
-        "View community alerts" "View Inventory" "Quit")
+        "View community alerts" "View Inventory" "Menu" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -21,10 +21,16 @@ do
             echo "you chose choice 3"
             ;;
         "View community alerts")
-
+            "$DIR"/admin_community_alerts
             ;;    
         "View Inventory")
 
+            ;;
+        "Menu")
+            echo "1) Log Inventory	    5) View Inventory"
+            echo "2) Log rate of consumption  6) Menu"
+            echo "3) View VATS suggestions    7) Quit"
+            echo "4) View community alerts"
             ;;
         "Quit")
             break

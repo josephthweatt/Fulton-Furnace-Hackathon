@@ -1,0 +1,20 @@
+#!/bin/bash
+clear
+
+alert_count=$(sudo mysql -u root -bs <<<"select count(*) from VATS.COMMUNITY_ALERTS;")
+echo
+
+#show a list of all community alerts that haven't been archived
+echo "Current Alerts: $alert_count"
+echo
+i=0
+while read name subject
+do
+    echo "Alert $(( i++ )):" 
+    echo "  Name: $name"
+    echo "  Subject: $subject"
+    echo
+done < <(sudo mysql -u root -Bs <<<"select MemberName,Subject from VATS.COMMUNITY_ALERTS;")
+
+read enter
+exit
