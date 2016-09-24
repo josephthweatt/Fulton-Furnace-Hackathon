@@ -1,0 +1,48 @@
+#!/bin/bash
+
+#get the directory where the script was executed
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+clear
+echo "Welcome to VATS"
+espeak "Welcome to VATS" &
+
+echo "Are you an administrator? (Select a number)"
+echo
+echo "1: Yes, I am an admin"
+echo "2: No, I want to leave an alert"
+echo "3: Quit"
+
+read input
+
+while [ true ];
+do
+	re='^[0-9]+$'
+	if ! [[ $input =~ $re ]] ; then
+	   echo "error: Please input a number";
+	   read input
+	   continue
+	fi
+
+	if [ $input -eq 1 ]; then
+		echo "Setting up the admin UI"
+		"$DIR"/interfaces/admin
+	elif [ $input -eq 2 ]; then
+		echo "Setting up the alert system"
+		"$DIR"/interfaces/community_alerts
+	elif [ $input -eq 3 ]; then
+		echo "Quitting"
+		break
+	else
+		echo "Input not recognized. Please try again"
+	fi
+
+	clear
+	echo "Welcome to VATS"
+	echo "Are you an administrator? (Select a number)"
+	echo
+	echo "1: Yes, I am an admin"
+	echo "2: No, I want to leave an alert"
+	echo "3: Quit"
+	read input
+done

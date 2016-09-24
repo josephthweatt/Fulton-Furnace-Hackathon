@@ -1,0 +1,67 @@
+#!/bin/bash
+clear
+
+echo "Please give your name:"
+read name
+while ! [[ $name = *[!\ ]* ]]; do
+  echo "No name given. Please give your name:"
+  read name
+done
+
+echo "Please state the issue in a few words"
+read subject
+while ! [[ $subject = *[!\ ]* ]]; do
+  echo "No subject given. Please input a subject line."
+  read subject
+done
+
+echo "Please give any additional details below, if any (1000 characters or less)"
+read details
+
+while [ true ];
+do
+    echo
+    echo "You are about to submit an issue to the admin. Do you want to continue?"
+    echo "1: Yes, submit"
+    echo "2: No, I want to edit my name"
+    echo "3: No, I want to edit the subject"
+    echo "4: No, I want to edit the details"
+
+    read input
+    re='^[0-9]+$'
+	if ! [[ $input =~ $re ]] ; then
+	   echo "error: Please input a number";
+	   read input
+	   continue
+	fi
+
+	if [ $input -eq 1 ]; then
+        #add data to database
+        sudo mysql -h localhost -u root << EOF 
+            insert into VATS.COMMUNITY_ALERTS values ('$name', now(), '$subject', '$details');
+EOF
+        echo "Alert submitted"
+        break
+    elif [ $input -eq 2 ]; then
+        echo "Please give your name:"
+        read name
+        while ! [[ $name = *[!\ ]* ]]; do
+            echo "No name given. Please give your name:"
+            read name
+        done
+        echo "Name changed"
+    elif [ $input -eq 3 ]; then
+        echo "Please state the issue in a few words"
+        read subject
+        while ! [[ $subject = *[!\ ]* ]]; do
+            echo "No subject given"
+            read subject
+        done
+        echo "Subject changed"
+    elif [ $input -eq 4 ]; then
+        echo "Please give any additional details below, if any (1000 characters or less)"
+        read details
+        echo "Details changed"
+    fi
+
+done
