@@ -1,3 +1,34 @@
 #!/bin/bash
+#get the directory where the script was executed
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-echo "You are the admin"
+clear
+echo "Welcome back, admin: "
+echo
+PS3='What do you want to do? '
+options=("Log Inventory" "Log rate of consumption" "View VATS suggestions" 
+        "View community alerts" "View Inventory" "Quit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Log Inventory")
+            echo "you chose choice 1"
+            ;;
+        "Log rate of consumption")
+            echo "you chose choice 2"
+            ;;
+        "View VATS suggestions")
+            echo "you chose choice 3"
+            ;;
+        "View community alerts")
+
+            ;;    
+        "View Inventory")
+
+            ;;
+        "Quit")
+            break
+            ;;
+        *) echo invalid option;;
+    esac
+done
