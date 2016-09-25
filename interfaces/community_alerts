@@ -37,7 +37,7 @@ do
 
 	if [ $input -eq 1 ]; then
         #add data to database
-        sudo mysql -u pi <<< "insert into VATS.COMMUNITY_ALERTS values ('$name', now(), '$subject', '$details');"
+        sudo mysql -u pi <<< "insert into VATS.COMMUNITY_ALERTS values ('$name', now(), '$subject', \"$details\");"
         echo "Alert submitted"
         break
     elif [ $input -eq 2 ]; then

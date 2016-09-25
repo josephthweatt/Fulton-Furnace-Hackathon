@@ -20,7 +20,7 @@ do
             "$DIR"/log_rate_of_consumption
             ;;
         "View VATS suggestions")
-            echo "you chose choice 3"
+            echo "no current suggestions from vats"
             ;;
         "View community alerts")
             "$DIR"/admin_community_alerts
