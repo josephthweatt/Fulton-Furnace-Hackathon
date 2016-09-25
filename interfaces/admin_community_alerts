@@ -16,5 +16,35 @@ do
     echo
 done < <(sudo mysql -u root -Bs <<<"select MemberName,Subject from VATS.COMMUNITY_ALERTS;")
 
-read enter
+#give the admin the option to select an alert for details
+
+while [ true ];
+do
+    echo "Select an alert to see details, or enter 'q' to return to the admin menu"
+    read select_alert
+
+    #quit
+    re='^[0-9]+$'
+    if ! [[ $input =~ $re ]] ; then
+        #quit
+        if [[ $select_alert == *['!'q]* ]] || [[ $select_alert == *['!'Q]* ]]
+        then
+            exit
+        fi
+    fi
+    if [ $select_alert -lt $alert_count ]
+    then
+        read name date date_time subject details < <(sudo mysql -u root -bs <<<"select * from VATS.COMMUNITY_ALERTS LIMIT $select_alert,1")
+        echo
+        echo $name
+        echo $date $date_time
+        echo $subject
+        echo $details
+        echo
+    else
+        echo "error: no such alert"
+    fi
+    
+done
+
 exit
