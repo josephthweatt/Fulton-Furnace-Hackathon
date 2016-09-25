@@ -7,11 +7,11 @@ import java.util.Calendar;
 public class calcTTD {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        double inventory = in.nextDouble();
-        double rateOfConsumption = in.nextDouble();
+        double inventory = Double.parseDouble(in.next());
+        double rateOfConsumption = Double.parseDouble(in.next());
         double ttd = inventory / rateOfConsumption  - 1;
 
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
         // the item is currently in surplus
         if (ttd < 1) {
