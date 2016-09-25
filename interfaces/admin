@@ -24,7 +24,7 @@ do
             "$DIR"/admin_community_alerts
             ;;    
         "View Inventory")
-
+            "$DIR"/view_inventory
             ;;
         "Menu")
             echo "1) Log Inventory	    5) View Inventory"
