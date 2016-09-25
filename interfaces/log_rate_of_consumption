@@ -2,7 +2,7 @@
 
 while [ true ];
 do
-    echo "Enter the number of the item you wish to log or:"
+    echo "Enter the number of the item you wish to change, or:"
     echo "a: add a new item type"
     echo "p: print the inventory list"
     echo "q: return to the admin menu"
@@ -42,10 +42,10 @@ do
         read name < <(sudo mysql -u root -bs <<<"select Item from VATS.INVENTORY LIMIT $item_index,1")
         echo
         echo "Enter the new quantity of " $name
-        read quantity
-        if [ $quantity -gt 0 ]; then
-            sudo mysql -u root <<< "UPDATE VATS.INVENTORY SET Quantity = $quantity WHERE Item=\"$name\";"
-            echo "$name quantity updated"
+        read roc
+        if [ $roc -gt 0 ]; then
+            sudo mysql -u root <<< "UPDATE VATS.INVENTORY SET RateOfConsumption=$roc WHERE Item=\"$name\";"
+            echo "$name rate of change updated"
         else
             echo "error: cannot have negative quantity"
         fi

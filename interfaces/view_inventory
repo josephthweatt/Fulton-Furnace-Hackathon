@@ -3,11 +3,12 @@
 echo "Current Inventory Items: "
 echo
 i=0
-while read item quantity TDD
+while read item quantity roc TDD
 do
     echo "$(( i++ ))  $item"
     echo "      Quantity: $quantity"
+    echo "      Rate of consumption: $roc"
     echo "      Time to Depletion: $TDD"
     echo
-done < <(sudo mysql -u root -Bs <<<"select Item,Quantity,TimeToDepletion from VATS.INVENTORY;")
+done < <(sudo mysql -u root -Bs <<<"select Item,Quantity,RateOfConsumption,TimeToDepletion from VATS.INVENTORY;")
 exit

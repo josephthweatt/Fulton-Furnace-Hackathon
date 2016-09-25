@@ -16,7 +16,8 @@ do
             "$DIR"/log_inventory
             ;;
         "Log rate of consumption")
-            echo "you chose choice 2"
+            "$DIR"/view_inventory
+            "$DIR"/log_rate_of_consumption
             ;;
         "View VATS suggestions")
             echo "you chose choice 3"
