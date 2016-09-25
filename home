@@ -5,7 +5,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 clear
 echo "Welcome to VATS"
-espeak "Welcome to VATS" &
 
 echo "Are you an administrator? (Select a number)"
 echo

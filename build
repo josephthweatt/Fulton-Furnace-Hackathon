@@ -1,0 +1,2 @@
+chmod +x home
+chmod +x interfaces/admin interfaces/log_inventory interfaces/log_rate_of_consumption interfaces/community_alerts interfaces/admin_community_alerts interfaces/view_inventory

@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-alert_count=$(sudo mysql -u root -bs <<<"select count(*) from VATS.COMMUNITY_ALERTS;")
+alert_count=$(sudo mysql -u pi -bs <<<"select count(*) from VATS.COMMUNITY_ALERTS;")
 echo
 
 #show a list of all community alerts that haven't been archived
@@ -14,7 +14,7 @@ do
     echo "  Name: $name"
     echo "  Subject: $subject"
     echo
-done < <(sudo mysql -u root -Bs <<<"select MemberName,Subject from VATS.COMMUNITY_ALERTS;")
+done < <(sudo mysql -u pi -Bs <<<"select MemberName,Subject from VATS.COMMUNITY_ALERTS;")
 
 #give the admin the option to select an alert for details
 
@@ -34,7 +34,7 @@ do
     fi
     if [ $select_alert -lt $alert_count ]
     then
-        read name date date_time subject details < <(sudo mysql -u root -bs <<<"select * from VATS.COMMUNITY_ALERTS LIMIT $select_alert,1")
+        read name date date_time subject details < <(sudo mysql -u pi -bs <<<"select * from VATS.COMMUNITY_ALERTS LIMIT $select_alert,1")
         echo
         echo $name
         echo $date $date_time
@@ -44,7 +44,7 @@ do
     else
         echo "error: no such alert"
     fi
-    
+
 done
 
 exit

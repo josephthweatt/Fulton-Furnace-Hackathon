@@ -21,7 +21,7 @@ do
             read new_item_rate
             #get the TTD of the item
             new_item_TTD=$(echo "$new_item_quantity $new_item_rate" | java -cp $DIR/../backend calcTTD)
-            sudo mysql -u root <<< "INSERT INTO VATS.INVENTORY VALUES (\"$new_item_name\",$new_item_quantity,$new_item_rate,\"$new_item_TTD\",\"\", now());"
+            sudo mysql -u pi <<< "INSERT INTO VATS.INVENTORY VALUES (\"$new_item_name\",$new_item_quantity,$new_item_rate,\"$new_item_TTD\",\"\", now());"
             continue
         elif [[ $item_index == *['!'q]* ]] || [[ $item_index == *['!'Q]* ]]; then
             echo
@@ -35,16 +35,16 @@ do
         fi
     fi
 
-    item_count=$(sudo mysql -u root -bs <<<"select count(*) from VATS.INVENTORY;")
+    item_count=$(sudo mysql -u pi -bs <<<"select count(*) from VATS.INVENTORY;")
 
     if [ $item_index -lt $item_count ]
     then
-        read name < <(sudo mysql -u root -bs <<<"select Item from VATS.INVENTORY LIMIT $item_index,1")
+        read name < <(sudo mysql -u pi -bs <<<"select Item from VATS.INVENTORY LIMIT $item_index,1")
         echo
         echo "Enter the new quantity of " $name
         read roc
         if [ $roc -gt 0 ]; then
-            sudo mysql -u root <<< "UPDATE VATS.INVENTORY SET RateOfConsumption=$roc WHERE Item=\"$name\";"
+            sudo mysql -u pi <<< "UPDATE VATS.INVENTORY SET RateOfConsumption=$roc WHERE Item=\"$name\";"
             echo "$name rate of change updated"
         else
             echo "error: cannot have negative quantity"

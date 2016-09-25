@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.15, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.44, for debian-linux-gnu (armv7l)
 --
 -- Host: localhost    Database: VATS
 -- ------------------------------------------------------
--- Server version	5.7.15-0ubuntu0.16.04.1
+-- Server version	5.5.44-0+deb8u1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -63,7 +63,7 @@ CREATE TABLE `INVENTORY` (
 
 LOCK TABLES `INVENTORY` WRITE;
 /*!40000 ALTER TABLE `INVENTORY` DISABLE KEYS */;
-INSERT INTO `INVENTORY` VALUES ('water',78,2,'2016-09-24','','2016-09-24 17:31:00'),('food',45,6,'2016-09-24','','2016-09-24 20:00:28'),('dogs',67,1,'2016-09-24','','2016-09-24 20:04:49'),('wood',99,2,'2016-11-12','','2016-09-25 00:48:25'),('ducks',87,3,'2016-10-23','','2016-09-25 00:49:15'),('yarn',56,1,'2016-11-19','','2016-09-25 00:50:23'),('paper',87,3,'2016-10-23','','2016-09-25 01:06:47');
+INSERT INTO `INVENTORY` VALUES ('water',78,2,'2016-09-24','','2016-09-24 17:31:00'),('food',45,6,'2016-09-24','','2016-09-24 20:00:28'),('dogs',67,1,'2016-09-24','','2016-09-24 20:04:49'),('wood',99,2,'2016-11-12','','2016-09-25 00:48:25'),('ducks',87,3,'2016-10-23','','2016-09-25 00:49:15'),('yarn',13,1,'2016-11-19','','2016-09-25 00:50:23'),('paper',87,3,'2016-10-23','','2016-09-25 01:06:47');
 /*!40000 ALTER TABLE `INVENTORY` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -76,4 +76,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-25  2:02:42
+-- Dump completed on 2016-09-25  3:26:33

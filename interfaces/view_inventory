@@ -10,5 +10,5 @@ do
     echo "      Rate of consumption: $roc"
     echo "      Time to Depletion: $TDD"
     echo
-done < <(sudo mysql -u root -Bs <<<"select Item,Quantity,RateOfConsumption,TimeToDepletion from VATS.INVENTORY;")
+done < <(sudo mysql -u pi -Bs <<<"select Item,Quantity,RateOfConsumption,TimeToDepletion from VATS.INVENTORY;")
 exit
