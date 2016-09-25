@@ -1,4 +1,44 @@
 #!/bin/bash
-echo "Enter the number of the item you wish to log (p to print the list again)"
-read item_index
 
+while [ true ];
+do
+    echo "Enter the number of the item you wish to log or:"
+    echo "a: add a new item type"
+    echo "p: print the inventory list"
+    echo "q: return to the admin menu"
+    read item_index
+
+    #quit
+    re='^[0-9]+$'
+    if ! [[ $item_index =~ $re ]] ; then
+        #quit
+        if [[ $item_index == *['!'q]* ]] || [[ $item_index == *['!'Q]* ]]; then
+            exit
+        elif [[ $item_index == *['!'p]* ]] || [[ $item_index == *['!'P]* ]]; then
+            #get the directory where the script was executed
+            echo
+            DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+            "$DIR"/view_inventory
+            continue
+        fi
+    fi
+
+    item_count=$(sudo mysql -u root -bs <<<"select count(*) from VATS.INVENTORY;")
+
+    if [ $item_index -lt $item_count ]
+    then
+        read name < <(sudo mysql -u root -bs <<<"select Item from VATS.INVENTORY LIMIT $item_index,1")
+        echo
+        echo "Enter the new quantity of " $name
+        read quantity
+        if [ $quantity -gt 0 ]; then
+            sudo mysql -u root <<< "UPDATE VATS.INVENTORY SET Quantity = $quantity WHERE Item=\"$name\";"
+            echo "$name quantity updated"
+        else
+            echo "error: cannot have negative quantity"
+        fi
+    else
+        echo "error: item does not exist"
+    fi
+
+done
