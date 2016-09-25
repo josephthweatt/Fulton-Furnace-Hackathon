@@ -11,8 +11,19 @@ do
     #quit
     re='^[0-9]+$'
     if ! [[ $item_index =~ $re ]] ; then
-        #quit
-        if [[ $item_index == *['!'q]* ]] || [[ $item_index == *['!'Q]* ]]; then
+        if [[ $item_index == *['!'a]* ]] || [[ $item_index == *['!'A]* ]]; then
+            echo "Give the name of the item:"
+            read new_item_name
+            echo "Give the existing quantity of the item:"
+            read new_item_quantity
+            echo "Give the approximate consumption rate of the item (in terms of quantity per day)"
+            read new_item_rate
+            #get the TTD of the item
+            #new_item_TTD < ../backend/calcTTD
+            new_item_TTD=0 #temporary
+            sudo mysql -u root <<< "INSERT INTO VATS.INVENTORY VALUES (\"$new_item_name\",$new_item_quantity,$new_item_rate,now(),\"\", now());"
+            continue
+        elif [[ $item_index == *['!'q]* ]] || [[ $item_index == *['!'Q]* ]]; then
             exit
         elif [[ $item_index == *['!'p]* ]] || [[ $item_index == *['!'P]* ]]; then
             #get the directory where the script was executed
