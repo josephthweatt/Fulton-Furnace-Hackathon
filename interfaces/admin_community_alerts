@@ -39,7 +39,8 @@ do
         echo $name
         echo $date $date_time
         echo $subject
-        echo $details
+        echo
+	cowsay $details
         echo
     else
         echo "error: no such alert"
