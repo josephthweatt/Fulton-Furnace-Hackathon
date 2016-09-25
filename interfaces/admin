@@ -12,7 +12,8 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Log Inventory")
-            echo "you chose choice 1"
+            "$DIR"/view_inventory
+            "$DIR"/log_inventory
             ;;
         "Log rate of consumption")
             echo "you chose choice 2"

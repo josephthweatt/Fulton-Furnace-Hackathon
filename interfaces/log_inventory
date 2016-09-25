@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Enter the number of the item you wish to log (p to print the list again)"
+read item_index
+
