@@ -38,12 +38,13 @@ do
 
     if [ $item_index -lt $item_count ]
     then
-        read name < <(sudo mysql -u pi -bs <<<"select Item from VATS.INVENTORY LIMIT $item_index,1")
+        read name roc < <(sudo mysql -u pi -bs <<<"select Item,RateOfConsumption from VATS.INVENTORY LIMIT $item_index,1")
         echo
         echo "Enter the new quantity of " $name
         read quantity
         if [ $quantity -gt 0 ]; then
-            sudo mysql -u pi <<< "UPDATE VATS.INVENTORY SET Quantity = $quantity WHERE Item=\"$name\";"
+            new_TTD=$(echo "$quantity $roc" | java -cp $DIR/../backend calcTTD)
+            sudo mysql -u pi <<< "UPDATE VATS.INVENTORY SET Quantity=$quantity AND TimeToDepletion=$new_TTD WHERE Item=\"$name\";"
             echo "$name quantity updated"
         else
             echo "error: cannot have negative quantity"
