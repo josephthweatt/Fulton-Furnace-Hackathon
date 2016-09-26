@@ -44,7 +44,7 @@ do
         read quantity
         if [ $quantity -gt 0 ]; then
             new_TTD=$(echo "$quantity $roc" | java -cp $DIR/../backend calcTTD)
-            sudo mysql -u pi <<< "UPDATE VATS.INVENTORY SET Quantity=$quantity,TimeToDepletion=\"$new_TTD\" WHERE Item=\"$name\";"
+            sudo mysql -u pi <<< "UPDATE VATS.INVENTORY SET Quantity=$quantity AND TimeToDepletion=$new_TTD WHERE Item=\"$name\";"
             echo "$name quantity updated"
         else
             echo "error: cannot have negative quantity"
