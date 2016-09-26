@@ -1,6 +1,8 @@
 # V.A.T.S
 #### A project my team made for the Fulton Furnace hackthon the weekend of September 23rd, 2016
 
+Created by: Kari Sanford, Joseph Thweatt, John Asigbekye, William Weigand
+
 VATS is a small computer made to assist villages in post-apocalyptic conditions, where resources are scarce and shortages of essential goods may occur from poor management. The system uses equations and algorithms to help optimize the use of resources, making suggestions of how goods should be traded amongst other villages and how resources should be used domestically.
 
 VATS operates on the Raspberry Pi and uses a portable battery to power the computer and the screen. At the end of the hackathon, we were able to get the following features on the system:
